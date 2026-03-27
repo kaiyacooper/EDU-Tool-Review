@@ -1,6 +1,5 @@
 var SheetUtils = (function () {
   function getToolData(identifier) {
-    // MODIFIED: Uses generic config key.
     const sheetId = Config.get('TOOL_DATA_SHEET_ID');
     // If a user wants to use this, they must add 'TOOL_DATA_SHEET_ID' to their properties.
     if (!sheetId) {
@@ -8,7 +7,6 @@ var SheetUtils = (function () {
       return {};
     }
     const ss = SpreadsheetApp.openById(sheetId);
-    // ... rest of the function is unchanged
     const sht = ss.getSheets()[0];
     const raw = sht.getDataRange().getValues();
     if (raw.length < 2) return {};
