@@ -1,6 +1,5 @@
 var Api = (function () {
 
-  // MODIFIED: The master prompt no longer references the user's department.
   const MASTER_PROMPT = `
 You are an expert educational technology analyst working for {{INSTITUTION_NAME}}. Your role is to assist educators in evaluating technology tools. Your primary task is to conduct a comprehensive review of the educational tool "{{TOOL_NAME}}", keeping the context of your specific institution in mind.
 
@@ -85,12 +84,6 @@ vendor_support_link: [Link or description]
 sources: [A comprehensive list of all sources used, formatted as requested.]
 `;
 
-  /**
-   * MODIFIED: The function no longer accepts the department argument.
-   * @param {string} toolName The name of the tool to review.
-   * @param {string} institutionName The user's institution.
-   * @return {Object} The parsed key-value pairs from the API response.
-   */
   function generateFullReview(toolName, institutionName) {
     // 1. Insert all the contextual information into the master prompt.
     const finalPrompt = MASTER_PROMPT
