@@ -28,12 +28,12 @@ function validateTemplatePlaceholders(templateId, values) {
     const unmappedKeys = templateKeys.filter(k => !Object.keys(values).includes(k));
     
     if (unmappedKeys.length > 0) {
-      Logger.log('⚠️ Template has placeholders not in our data:');
+      Logger.log(' Template has placeholders not in our data:');
       unmappedKeys.forEach(key => Logger.log(`• {{${key}}}`));
     }
     
   } catch (e) {
-    Logger.log('❌ Error validating template: ' + e.message);
+    Logger.log(' Error validating template: ' + e.message);
   }
 }
 
@@ -49,25 +49,25 @@ function debugFieldPopulation(merged) {
     }
   });
   
-  Logger.log(`📊 Field Population Debug:`);
-  Logger.log(`✅ Filled fields (${filled.length}): ${filled.join(', ')}`);
-  Logger.log(`❌ Empty fields (${empty.length}): ${empty.join(', ')}`);
+  Logger.log(`Field Population Debug:`);
+  Logger.log(`Filled fields (${filled.length}): ${filled.join(', ')}`);
+  Logger.log(`Empty fields (${empty.length}): ${empty.join(', ')}`);
   
   return { filled, empty };
 }
 
-// Test function to check API connectivity
+// Test function to check API connection
 function testApiConnection() {
   try {
     // MODIFIED: Changed UfApi to Api to match the new file name.
     const result = Api.enrich('Zoom', 'basic');
-    Logger.log('🧪 API Test Result:', result);
+    Logger.log('API Test Result:', result);
     if (result) {
-      Logger.log('🧪 Fields returned:', Object.keys(result));
+      Logger.log('Fields returned:', Object.keys(result));
     }
     return result;
   } catch (e) {
-    Logger.log('❌ API Test Failed:', e.message);
+    Logger.log('API Test Failed:', e.message);
     return null;
   }
 }
