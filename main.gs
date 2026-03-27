@@ -6,25 +6,26 @@ function onOpen() {
 }
 
 /**
- * The main function to generate a tool review document.
+ * Main function to generate a tool review document.
  */
 function generateReview() {
   const ui = DocumentApp.getUi();
 
-  // Check if the API key is configured by the developer.
+  // Check API key configuration
   const apiKey = Config.get('API_KEY');
   if (!apiKey) {
-    ui.alert('Script Not Configured', 'The script developer has not yet configured the necessary API key in the project settings.', ui.ButtonSet.OK);
+    ui.alert('Script Not Configured', 'The user has not yet configured the necessary API key in the project settings.', ui.ButtonSet.OK);
     return;
   }
 
-  // Gather only Tool Name and Institution from the user.
+  // Gather Tool Name and Institution from the user
   let toolInput, institution;
   try {
     const toolPrompt = ui.prompt('Step 1 of 2: Tool Name', 'Enter the name or website of the tool to review:', ui.ButtonSet.OK_CANCEL);
     if (toolPrompt.getSelectedButton() !== ui.Button.OK || !toolPrompt.getResponseText()) return;
     toolInput = toolPrompt.getResponseText().trim();
 
+  // Add university information for a more tailored response
     const institutionPrompt = ui.prompt('Step 2 of 2: Your Institution', 'Enter the name of your university or organization:', ui.ButtonSet.OK_CANCEL);
     if (institutionPrompt.getSelectedButton() !== ui.Button.OK || !institutionPrompt.getResponseText()) return;
     institution = institutionPrompt.getResponseText().trim();
@@ -36,8 +37,8 @@ function generateReview() {
   const toolName = toolInput.startsWith('http') ? '' : toolInput;
   const url = toolInput.startsWith('http') ? toolInput : '';
 
-  // --- THIS IS THE CORRECTED SECTION ---
-  // We create the HTML object first and set its size, then pass it to the dialog.
+  
+  // Create the HTML object 
   const workingHtml = HtmlService.createHtmlOutput('<b>Please wait...</b><br>Generating a tailored review for ' + institution + '. This may take a minute or two.')
       .setWidth(300)
       .setHeight(120);
@@ -48,7 +49,6 @@ function generateReview() {
   
   let merged = Object.assign({}, TemplateFields.all, apiResult);
 
-  // --- POST-PROCESSING LOGIC (UNCHANGED) ---
   if (!merged['toolname']) merged['toolname'] = toolName || url;
   Object.keys(merged).forEach(k => {
     if ((k.startsWith('status_') || k.startsWith('purpose_') || k.startsWith('usage_')) && merged[k].toLowerCase() === 'yes') {
@@ -73,7 +73,7 @@ function generateReview() {
     if (!merged[k] || merged[k] === '') merged[k] = 'Not available';
   });
   
-  // --- DOCUMENT CREATION (UNCHANGED) ---
+  // Create new Document
   const templateId = Config.get('TEMPLATE_DOC_ID');
   if (!templateId) {
     ui.alert('Script Not Configured', 'The script developer has not yet configured the template document ID.', ui.ButtonSet.OK);
