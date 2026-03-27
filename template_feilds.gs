@@ -1,4 +1,4 @@
-// This defines the complete data structure for a review.
+// Complete data structure of each review
 var TemplateFields = {
   all: {
     'toolname': '', 'overview': '', 'toolsummary': '', 'status_available': '', 'status_under_review': '', 'status_denied': '',
