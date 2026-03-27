@@ -1,11 +1,9 @@
 var SourcesTracker = (function () {
   let entries = [];
   
-  // Add a source URL and the section it enriched
   function add(url, section) {
     if (!url || !section) return;
-    
-    // Clean and validate URL
+
     const cleanUrl = url.toString().trim();
     const cleanSection = section.toString().trim();
     
@@ -94,16 +92,13 @@ var SourcesTracker = (function () {
       return result.join('\n');
     }
     
-    // Default parenthetical format
     return unique.map(e => `• ${e.url} (${e.section})`).join('\n');
   }
   
-  // Get raw entries for debugging
   function getEntries() {
     return [...entries]; // Return copy to prevent external modification
   }
-  
-  // Clear all tracked sources
+
   function reset() {
     const previousCount = entries.length;
     entries = [];
