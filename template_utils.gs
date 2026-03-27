@@ -7,7 +7,7 @@ var TemplateUtils = (function () {
       const doc = DocumentApp.openById(newDocId);
       const body = doc.getBody();
       
-      Logger.log('📄 Opening document: ' + newDocId);
+      Logger.log('Opening document: ' + newDocId);
       
       let replacementCount = 0;
       
@@ -30,26 +30,26 @@ var TemplateUtils = (function () {
         
         if (beforeText !== afterText) {
           replacementCount++;
-          Logger.log(`🔁 Replacing: {{${key}}} → "${replacement.substring(0, 50)}..."`);
+          Logger.log(`Replacing: {{${key}}} → "${replacement.substring(0, 50)}..."`);
         }
       });
       
       // Check for unreplaced placeholders
       const unreplaced = body.getText().match(/{{[^}]+}}/g);
       if (unreplaced) {
-        Logger.log(`⚠️ ${unreplaced.length} unreplaced placeholders found:`);
+        Logger.log(`${unreplaced.length} unreplaced placeholders found:`);
         [...new Set(unreplaced)].forEach(p => Logger.log('• ' + p));
       } else {
-        Logger.log('✅ All placeholders successfully replaced');
+        Logger.log('All placeholders successfully replaced');
       }
       
-      Logger.log(`📊 Total replacements made: ${replacementCount}`);
+      Logger.log(`Total replacements made: ${replacementCount}`);
       
       doc.saveAndClose();
       return newDocId;
       
     } catch (e) {
-      Logger.log('❌ Error applying template: ' + e.message);
+      Logger.log('Error applying template: ' + e.message);
       throw e;
     }
   }
