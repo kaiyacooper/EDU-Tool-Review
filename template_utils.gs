@@ -17,10 +17,10 @@ var TemplateUtils = (function () {
         const rawValue = String(values[key] || '');
         
         const replacement =
-          rawValue === '✓' || rawValue === '✔️' ? '✔️' :
-          rawValue === '❌' ? '❌' :
-          rawValue === 'Yes' ? '✔️' :
-          rawValue === 'No' ? '❌' :
+          rawValue === '✓' || rawValue === 'Yes' ? 'Yes' :
+          rawValue === 'Error' ? 'Error' :
+          rawValue === 'Yes' ? 'Yes' :
+          rawValue === 'No' ? 'No' :
           rawValue === 'Unknown' ? 'Not available' :
           rawValue;
         
