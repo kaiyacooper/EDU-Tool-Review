@@ -6,7 +6,7 @@ function onOpen() {
 }
 
 /**
- * Main function to generate a tool review document.
+ * Main function to generate tool review document.
  */
 function generateReview() {
   const ui = DocumentApp.getUi();
@@ -52,7 +52,7 @@ function generateReview() {
   if (!merged['toolname']) merged['toolname'] = toolName || url;
   Object.keys(merged).forEach(k => {
     if ((k.startsWith('status_') || k.startsWith('purpose_') || k.startsWith('usage_')) && merged[k].toLowerCase() === 'yes') {
-      merged[k] = '✔️';
+      merged[k] = 'Yes';
     }
   });
   if (merged['cost'] && merged['cost'].toLowerCase() === 'yes') {
@@ -81,11 +81,11 @@ function generateReview() {
   }
   const newDocId = TemplateUtils.apply(templateId, merged);
   try {
-    const html = HtmlService.createHtmlOutput(`<p>✅ Review created!</p><p>You can view it here:</p><a href="https://docs.google.com/document/d/${newDocId}/edit" target="_blank">Open New Document</a>`)
+    const html = HtmlService.createHtmlOutput(`<p> Review created!</p><p>You can view it here:</p><a href="https://docs.google.com/document/d/${newDocId}/edit" target="_blank">Open New Document</a>`)
         .setWidth(300)
         .setHeight(120);
     ui.showModalDialog(html, 'Success');
   } catch (e) {
-    Logger.log('✅ Review created: https://docs.google.com/document/d/' + newDocId + '/edit');
+    Logger.log('Review created: https://docs.google.com/document/d/' + newDocId + '/edit');
   }
 }
