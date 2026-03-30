@@ -66,7 +66,7 @@ During my experiance in higher education, I have seen how much time and effort g
 *   **OpenAI API (GPT-4)**
 *   **Google Workspace Automation (Google Docs)**
 
-## DISCLAIMER: AI is known to have many biases and false information, due to this it is important to read through and double check all output provided by this tool. I made this to be a helpful starting point, but I'm not responsible for any false information the AI might generate. Please use your best judgment!
+## DISCLAIMER: AI is known to have many biases and false information, due to this it is important to read through and double check all output provided by this tool. I made this to be a helpful starting point, but I am not responsible for any false information the AI might generate. Please use your best judgment!
 
 ---
 
