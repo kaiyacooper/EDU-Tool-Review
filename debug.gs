@@ -16,10 +16,10 @@ function validateTemplatePlaceholders(templateId, values) {
       }
     });
     
-    Logger.log(`✅ ${found.length} placeholders found in template`);
+    Logger.log(`${found.length} placeholders found in template`);
     
     if (missing.length > 0) {
-      Logger.log(`⚠️ ${missing.length} placeholders missing from template:`);
+      Logger.log(' ${missing.length} placeholders missing from template:`);
       missing.forEach(key => Logger.log(`• {{${key}}}`));
     }
     
