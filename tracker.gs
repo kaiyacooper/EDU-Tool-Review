@@ -13,7 +13,7 @@ var SourcesTracker = (function () {
         section: cleanSection,
         timestamp: new Date()
       });
-      Logger.log(`📋 Tracked source: ${cleanSection} ← ${cleanUrl.substring(0, 50)}...`);
+      Logger.log(`Tracked source: ${cleanSection} ← ${cleanUrl.substring(0, 50)}...`);
     }
   }
   
